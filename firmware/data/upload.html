@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>GC Nano Jewel</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #0d0d0d;
+        color: #e0e0e0;
+        font-family: system-ui, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card {
+        background: #1a1a1a;
+        border: 1px solid #2a2a2a;
+        border-radius: 12px;
+        padding: 40px;
+        width: 100%;
+        max-width: 420px;
+        text-align: center;
+      }
+      svg.title {
+        max-width: 180px;
+        margin-bottom: 8px;
+      }
+      p {
+        font-size: 0.85rem;
+        color: #666;
+        margin-bottom: 32px;
+      }
+      .drop {
+        border: 2px dashed #333;
+        border-radius: 8px;
+        padding: 32px 20px;
+        cursor: pointer;
+        transition: 0.2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .drop:hover,
+      .drop.over {
+        border-color: #555;
+        background: #222;
+      }
+      .drop svg {
+        width: 32px;
+        height: 32px;
+        opacity: 0.4;
+      }
+      .drop span {
+        font-size: 0.9rem;
+        color: #888;
+      }
+      .drop small {
+        font-size: 0.75rem;
+        color: #555;
+      }
+      input[type='file'] {
+        display: none;
+      }
+      #filename {
+        font-size: 0.8rem;
+        color: #aaa;
+        margin-top: 16px;
+        min-height: 1.2em;
+      }
+      button {
+        margin-top: 24px;
+        width: 100%;
+        padding: 12px;
+        background: #4b3fcb;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      button:disabled {
+        opacity: 0.3;
+        cursor: default;
+      }
+      .bar-wrap {
+        margin-top: 20px;
+        background: #222;
+        border-radius: 4px;
+        overflow: hidden;
+        height: 6px;
+        display: none;
+      }
+      .bar {
+        height: 6px;
+        width: 0;
+        background: #fff;
+        transition: width 0.1s;
+      }
+      #msg {
+        margin-top: 16px;
+        font-size: 0.85rem;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <svg
+        class="title"
+        viewBox="3.0619 4.3606 94.74 11.296"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="GC NANO"
+      >
+        <path
+          d="m9.6517 8.8056v2.1026h4.1204v2.3848h-7.9587v-6.5334h10.724v-2.3989h-11.331q-2.1449 0.098778-2.1449 1.3406v8.3114q0.11289 1.6369 1.6369 1.6369h9.8637q1.9756-0.11289 1.9756-1.6369l-0.014111-5.207zm18.349-2.032h-7.6764v6.5193h7.7047v-2.3848h2.7658l0.01411 3.0903q0.127 1.0301-1.0301 1.4393-0.49389 0.18344-1.1853 0.21167-1.8062 0.01411-9.3839 0-1.524 0-1.6369-1.6369 0.02822-2.0602 0-8.3114 0-1.2418 2.1449-1.3406h8.89q2.0179 0 2.1731 1.3406v3.1186h-2.7799zm19.426 8.8759h2.8646v-11.289h-2.8646v7.2531l-8.8618-7.2531h-2.8081v11.289h2.8081l0.01411-7.4648zm17.164 0-4.6143-8.1985-3.2597 5.8138h3.2597v2.3848h-8.3255l1.016-1.6651 5.7573-9.6238h3.0903l6.4206 11.289zm15.766 0h2.8646v-11.289h-2.8646v7.2531l-8.8618-7.2531h-2.8081v11.289h2.8081l0.01411-7.4648zm17.446-1.5946q0 1.4817-2.0461 1.5946-1.8062 0.01411-9.5391 0-1.524 0-1.6369-1.6369 0.02822-2.0602 0-8.3114 0-1.2418 2.1449-1.3406h9.0311q1.8909 0 2.032 1.2841zm-2.794-0.77611v-6.5052h-7.6764v6.5052z"
+          fill="#fff"
+        />
+      </svg>
+      <p>Upload a 240x198 GIF to display on the jewel</p>
+      <label class="drop" id="drop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="17 8 12 3 7 8" />
+          <line x1="12" y1="3" x2="12" y2="15" />
+        </svg>
+        <span>Drop a GIF here</span>
+        <small>or click to browse</small>
+        <input type="file" id="file" accept=".gif,image/gif" />
+      </label>
+      <div id="filename"></div>
+      <button id="btn" disabled>Upload</button>
+      <div class="bar-wrap" id="bar-wrap"><div class="bar" id="bar"></div></div>
+      <div id="msg"></div>
+    </div>
+    <script>
+      const drop = document.getElementById('drop');
+      const file = document.getElementById('file');
+      const btn = document.getElementById('btn');
+      const bar = document.getElementById('bar');
+      const barWrap = document.getElementById('bar-wrap');
+      const msg = document.getElementById('msg');
+      const fname = document.getElementById('filename');
+
+      file.addEventListener('change', () => setFile(file.files[0]));
+
+      drop.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        drop.classList.add('over');
+      });
+      drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+      drop.addEventListener('drop', (e) => {
+        e.preventDefault();
+        drop.classList.remove('over');
+        const f = e.dataTransfer.files[0];
+        if (f) {
+          file.files = e.dataTransfer.files;
+          setFile(f);
+        }
+      });
+
+      const validate = (f) =>
+        new Promise((resolve) => {
+          if (f.size > 1920 * 1024) return resolve('File must be under 1920 KB');
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const v = new DataView(e.target.result);
+            const magic = String.fromCharCode(v.getUint8(0), v.getUint8(1), v.getUint8(2));
+            if (magic !== 'GIF') return resolve('File must be a GIF');
+            const w = v.getUint16(6, true);
+            const h = v.getUint16(8, true);
+            if (w !== 240 || h !== 198) return resolve(`GIF must be 240x198 (got ${w}x${h})`);
+            resolve(null);
+          };
+          reader.readAsArrayBuffer(f.slice(0, 10));
+        });
+
+      const setFile = async (f) => {
+        fname.textContent = f?.name ?? '';
+        btn.disabled = true;
+        msg.textContent = '';
+        if (!f) return;
+        const error = await validate(f);
+        if (error) {
+          msg.textContent = error;
+          msg.style.color = '#e55';
+        } else {
+          btn.disabled = false;
+        }
+      };
+
+      btn.addEventListener('click', () => {
+        const f = file.files[0];
+        if (!f) return;
+        const data = new FormData();
+        data.append('upload', f);
+        const req = new XMLHttpRequest();
+        req.open('POST', '/upload');
+        btn.disabled = true;
+        barWrap.style.display = 'block';
+        bar.style.width = '0';
+        msg.textContent = '';
+        req.upload.addEventListener('progress', (p) => {
+          if (p.lengthComputable) bar.style.width = `${Math.round((p.loaded / p.total) * 100)}%`;
+        });
+        req.onload = () => {
+          if (req.status === 200) {
+            msg.textContent = 'Upload complete!';
+            msg.style.color = '#aaa';
+          } else {
+            msg.textContent = `Error: ${req.responseText}`;
+            msg.style.color = '#e55';
+            btn.disabled = false;
+          }
+        };
+        req.send(data);
+      });
+    </script>
+  </body>
+</html>
