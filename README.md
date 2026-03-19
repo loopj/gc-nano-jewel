@@ -38,6 +38,23 @@ The screen should press-fit from the top into the 3D printed insert, which can t
 
 Flash the firmware before closing everything up.
 
+## Flashing the Firmware
+
+### Using a Browser-Based Flasher
+
+- Plug in the ESP32-C3 to your computer via USB
+- Go to <https://www.espboards.dev/tools/program/> and click *Connect to ESP*
+- Click *Flash firmware*
+- Set the *Flash Address* to `0x0` an click *Choose File*
+- Select the `factory.bin` file you downloaded from the [releases](https://github.com/loopj/gc-nano-jewel/releases) page
+- Click *Program* and wait for it to finish
+
+### Using PlatformIO
+
+- Install PlatformIO
+- Plug in the ESP32-C3 to your computer via USB
+- Run `pio run -t upload` from the `firmware` directory
+
 ## Usage
 
 <img src="images/demo.gif">
