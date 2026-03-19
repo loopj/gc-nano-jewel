@@ -38,13 +38,25 @@ The screen should press-fit from the top into the 3D printed insert, which can t
 
 Flash the firmware before closing everything up.
 
-## Uploading GIFs
+## Usage
+
+<img src="images/demo.gif">
+
+### Uploading GIFs
 
 - Connect to the "GCNANO-XXXXXX" WiFi network (password: "bitbuilt")
 - Open a web browser and navigate to <http://gcnano.local>
 - Upload the GIF!
 
-## Pre-made GIFs
+### Settings
+
+Clicking the cog icon in the top right of the page will flip to the settings page. By default, the settings page is locked. To unlock it, enter the settings password (default: "bitbuilt") and click "Unlock".
+
+### Connecting to WiFi
+
+By default, the firmware creates its own WiFi AP. You can instead connect to your home WiFi network by entering the SSID and password in the settings page.
+
+### Pre-made GIFs
 
 There are a couple of pre-made GIFs in the [`gifs/` folder](gifs/). If you want to make your own, make sure to resize it to 240x198 and keep the file size under 1,408 KB. Please send me your GIFs and I'll add them to the collection!
 
