@@ -7,7 +7,7 @@ Custom LCD "jewel" insert for the [GC Nano](https://bitbuilt.net/forums/threads/
 ## Features
 
 - Fits in an unmodified GC Nano shell
-- Displays a static or animated GIF (240x198, < 1920KB)
+- Displays a static or animated GIF (240x198, < 1,408 KB)
 - WiFi access point and web interface for uploading new GIFs
 - OTA firmware updates so you don't have to open the case again
 
@@ -46,7 +46,7 @@ Flash the firmware before closing everything up.
 
 ## Pre-made GIFs
 
-There are a couple of pre-made GIFs in the [`gifs/` folder](gifs/). If you want to make your own, make sure to resize it to 240x198 and keep the file size under 1920KB. Please send me your GIFs and I'll add them to the collection!
+There are a couple of pre-made GIFs in the [`gifs/` folder](gifs/). If you want to make your own, make sure to resize it to 240x198 and keep the file size under 1,408 KB. Please send me your GIFs and I'll add them to the collection!
 
 <table>
   <tr>
